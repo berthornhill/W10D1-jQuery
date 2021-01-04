@@ -1,16 +1,16 @@
-const DomNodeCollection = require('./dom_node_collection');
+const DOMNodeCollection = require('./dom_node_collection');
 
-window.DomNodeCollection = DomNodeCollection;
+window.DOMNodeCollection = DOMNodeCollection;
 
 function $l(selector){ 
     
     if (selector instanceof HTMLElement) {
         // passsingle element into DNC
-        return new DomNodeCollection([selector]);
+        return new DOMNodeCollection([selector]);
     } else {
         //pass list of elements into DNC
         const nodes = document.querySelectorAll(selector);
-        return new DomNodeCollection(Array.from(nodes));
+        return new DOMNodeCollection(Array.from(nodes));
     }
 };
 
