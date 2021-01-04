@@ -4,7 +4,7 @@ class DOMNodeCollection {
     }
  
     html(string) {
-        if (!string) {
+       if (!string) {
             return this.htmlElements[0].innerHTML;
         } else {
             this.htmlElements.forEach( el => el.innerHTML = string);
@@ -69,6 +69,45 @@ class DOMNodeCollection {
             el.removeAttribute("class");
         })
     }
+
+    children() {
+        ///add every elements' child to array,
+        let queue = this.htmlElements.slice(); // array of initial parent elements
+        let kids = [];
+        debugger
+        while (queue.length > 0) {
+            debugger
+            let ele = queue.shift();
+            if (ele.children) {
+                let children = Array.from(ele.children)
+                queue = queue.concat(children);
+                kids = kids.concat(children)
+            }
+        }
+        debugger
+        return new DOMNodeCollection(kids);
+    }
+
+
+    parent() {
+        ///add every elements' child to array,
+        let queue = this.htmlElements.slice(); // array of initial parent elements
+        let parents = [];
+        debugger
+        while (queue.length > 0) {
+            debugger
+            let ele = queue.shift();
+            if (ele.parentElement) {
+                let parent = ele.parentElement;
+                queue = queue.concat(parent);
+                parents = parents.concat(parent)
+            }
+        }
+        debugger
+        return new DOMNodeCollection(parents);
+    }
+
+    
 
 }
 
